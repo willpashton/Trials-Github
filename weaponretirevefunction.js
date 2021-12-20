@@ -9,22 +9,35 @@ axios.defaults.headers.common = {
 
 function retrieveWeapons() {
 }
+
+
+
 function playerSearch(namesearch, bungienamecode){
-    var page = 0
-    axios.get("/User/Search/prefix/"+namesearch+"/"+page+"/")
-    .then(response => {
-        var nameinfo = {}
-        nameinfo = response.data;
-        console.log(nameinfo['Response']['hasMore']);
-        if (bungienamecode == nameinfo['Response']['searchResults'][0]['bungieGlobalDisplayNameCode']){
-            console.log(nameinfo['Response']['searchResults'][0]['destinyMemberships'][0]['membershipId']);
-        }
-        else{
-            console.log('weiner');
-        }
-    })
-    .catch(error => {
-        console.log(error);
-    })
+    page=-1
+    hasMore=false;
+    do{
+        page++;
+        axios.get("/User/Search/prefix/"+namesearch+"/"+page+"/")
+        .then(response=> {
+            var nameinfo = {}
+            nameinfo = response.data;
+            hasMore = nameinfo['Response']['hasMore'];
+            //console.log(nameinfo['Response']['searchResults'].length);
+            for (var i=0; i<nameinfo['Response']['searchResults'].length; i++){
+                if (bungienamecode == nameinfo['Response']['searchResults'][i]['bungieGlobalDisplayNameCode']){
+                    console.log(nameinfo['Response']['searchResults'][i]['destinyMemberships'][page]['membershipId']);
+                    var cheese = (nameinfo['Response']['searchResults'][i]['destinyMemberships'][page]['membershipId']);
+                    return cheese;
+                }
+                else{
+                    console.log('break');
+                }
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }while(hasMore)
 }
-playerSearch("irredium", 1691);
+
+playerSearch("o2", 4750)
