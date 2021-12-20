@@ -7,6 +7,7 @@ axios.defaults.headers.common = {
   'X-API-Key': KEY
 };
 
+<<<<<<< HEAD
 async function retrieveWeapons() {
     //WEAPONS GETETTTRERER
 };
@@ -75,3 +76,35 @@ async function main(){
     console.log(characterstuff)
 }
 main();
+=======
+function retrieveWeapons() {
+}
+async function playerSearch(namesearch, bungienamecode){
+    try{
+        var page = 0;
+        const response = await axios.get("/User/Search/prefix/"+namesearch+"/"+page+"/");
+        //console.log(response.data['Response']['searchResults'][0]['bungieGlobalDisplayNameCode']);
+        var code = response.data['Response']['searchResults'][0]['bungieGlobalDisplayNameCode'];
+        return code
+
+        /*.then(response => {
+            var nameinfo = {}
+            nameinfo = response.data;
+            console.log("More pages? " + nameinfo['Response']['hasMore']);
+            if (bungienamecode == nameinfo['Response']['searchResults'][0]['bungieGlobalDisplayNameCode']){
+                console.log(nameinfo['Response']['searchResults'][0]['destinyMemberships'][0]['membershipId']);
+            }
+            else{
+                console.log('weiner');
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })*/
+    }
+    catch (error){
+        console.log("error")
+    }
+}
+console.log((playerSearch("irredium", 1691).then(code => console.log(code))));
+>>>>>>> ac27f0dfcd848503a1d844d00615b9f924fa9e8c
