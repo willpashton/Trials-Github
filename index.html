@@ -8,6 +8,7 @@
 <style>
 * {
   font-family: 'Manrope';
+  color: #DDD;
   background-color: rgb(26,26,26);
   box-sizing: border-box;
 }
@@ -52,13 +53,19 @@ p {
   padding-left: 10%;
 }
 
+#contentbox1 {
+  background-color: #333;
+}
+
 #search {
     margin-left: 10%;
+    size: 10vw;
 }
 
 .sidenav h1 {
     margin-left: 10%;
-    background-color: rgb(26,26,26)
+    background-color:#111;
+    color: #DDD
 }
 </style>
 </head>
@@ -70,8 +77,10 @@ p {
 </div>
 
 <div class="content">
-  <h2>CSS Template</h2>
-  <p>A full-height, fixed sidenav and content.</p>
+  <h2>Current Map:</h2>
+  <div id="contentbox1">
+    <p>Map Here</p>
+  </div>
 </div>
 
 </body>
